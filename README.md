@@ -1,4 +1,4 @@
-A simple program to determine the color string in hex by clicking on a pixel.
+A command line tool for X Window System to identify the color string in hex by clicking on a pixel.
 
   When this program is run, the mouse pointer is grabbed and changed to
   a cross hair and when the mouse is clicked, the color of the clicked
@@ -13,9 +13,11 @@ To compile, at the shell prompt, type:
     make
     
 --
-Muhammd A Muquit
-ma_muquit@fccc.edu
-http://www.fccc.edu/users/muquit/
 
-March 16, 1997
-(a quick hack on my home linux box)
+    v1.0.1
+    March 16, 1997
+
+--
+
+    v1.0.2
+    Updated: Apr-10-2018 
