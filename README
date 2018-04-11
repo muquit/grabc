@@ -1,0 +1,21 @@
+A simple program to determine the color string in hex by clicking on a pixel.
+
+  When this program is run, the mouse pointer is grabbed and changed to
+  a cross hair and when the mouse is clicked, the color of the clicked
+  pixel is written to stdout in hex prefixed with #
+
+  This program can be useful when you see a color and want to use the
+  color in xterm or your window manager's border but no clue what the
+  name of the color is. It's silly to use a image processing software
+  to find it out.
+
+To compile, at the shell prompt, type:
+    make
+    
+--
+Muhammd A Muquit
+ma_muquit@fccc.edu
+http://www.fccc.edu/users/muquit/
+
+March 16, 1997
+(a quick hack on my home linux box)
