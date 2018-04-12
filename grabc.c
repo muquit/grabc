@@ -361,7 +361,7 @@ static Window get_window_color(Display *display,XColor *color)
     root_window=XRootWindow(display,XDefaultScreen(display));
     target_window=select_window(display,&x,&y);
 
-    log_debug("Selected Window id: %lx",target_window);
+    log_debug("Selected Window id: 0x%lx",target_window);
     
     if (target_window == (Window) NULL)
         return (Window) NULL;
