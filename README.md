@@ -13,7 +13,7 @@ A command line tool for X Window System to identify the color string in hex by c
 # Synopsis
 
 ```
-grabc Version: 1.0.2
+grabc v1.0.2
 A program to identify a pixel color of an X Window
 by muquit@muquit.com https://www.muquit.com/
 
@@ -29,17 +29,12 @@ Where the options are:
  -d         - show debug messages
  -a         - Print all 16 bits of color. Default is high order 8 bits
 Example:
-* Print pixel color in hex on stdout and rgb on stderr:
-  Default behavior
+* Print pixel color in hex on stdout:
    $ grabc
-
 * Show usage:
    $ grabc -h
-
 * Print Window Id (Note the upper case W):
    $ grabc -W
-#0x13234
-
 * Print pixel color of Window with id 0x13234 at location 10,20
    $ grabc -w 0x13234 -l +10+20
 ```
@@ -58,7 +53,10 @@ Older version of this program is available on Ubuntu. However, if you need to ge
     make
 ```    
 
-# Example
+# Know Issues
+
+* If color grabbed from root window, it might always show #000000
+
 
 # ChangeLog
 

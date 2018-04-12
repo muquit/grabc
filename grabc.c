@@ -86,14 +86,14 @@ static void show_usage(void)
 " -v         - show version info",
 " -h         - show this usage",
 " -hex       - print pixel value as Hex on stdout",
-" -rgb       - print pixel value as RGB on stdout",
+" -rgb       - print pixel value as RGB on stderr",
 " -W         - print the Window id at mouse click",
 " -w id      - window id in hex, use before -l",
 " -l +x+y    - pixel co-ordinate. requires window id",
 " -d         - show debug messages",
 " -a         - Print all 16 bits of color. Default is high order 8 bits",
 "Example:",
-"* Print pixel color in hex on stdout and rgb on stderr:",
+"* Print pixel color in hex on stdout:",
 "   $ grabc",
 "* Show usage:",
 "   $ grabc -h",
@@ -106,7 +106,7 @@ static void show_usage(void)
     };
 
     (void) printf("\n");
-    (void) printf("grabc Version: %s\n",VERSION_S);
+    (void) printf("grabc v%s\n",VERSION_S);
     (void) printf("A program to identify a pixel color of an X Window\n");
     (void) printf("by muquit@muquit.com https://www.muquit.com/\n\n");
     (void) printf("Usage: grabc [options]\n");
