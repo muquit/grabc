@@ -88,7 +88,7 @@ static void show_usage(void)
 " -hex       - print pixel value as Hex on stdout",
 " -rgb       - print pixel value as RGB on stderr",
 " -W         - print the Window id at mouse click",
-" -w id      - window id in hex, use before -l",
+" -w id      - window id in hex, use -l +x+y",
 " -l +x+y    - pixel co-ordinate. requires window id",
 " -d         - show debug messages",
 " -a         - Print all 16 bits of color. Default is high order 8 bits",

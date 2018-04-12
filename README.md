@@ -1,14 +1,14 @@
 # grabc
-A command line tool for X Window System to identify the color string in hex by clicking on a pixel.
+A command line tool to identify color a pixel on a X Window.
 
-  When this program is run, the mouse pointer is grabbed and changed to
-  a cross hair and when the mouse is clicked, the color of the clicked
-  pixel is written to stdout in hex prefixed with #
+When this program is run, the mouse pointer is grabbed and changed to
+a cross hair and when the mouse is clicked, the color of the clicked
+pixel is written to stdout in hex prefixed with #
 
-  This program can be useful when you see a color and want to use the
-  color in xterm or your window manager's border but no clue what the
-  name of the color is. It's silly to use a image processing software
-  to find it out. (That's how I described it 20 years ago, so keeping it this way for historical reasons - Apr-11-2018).
+This program can be useful when you see a color and want to use the
+color in xterm or your window manager's border but no clue what the
+name of the color is. It's silly to use a image processing software
+to find it out. (That's how I described it 20 years ago, so keeping it this way for historical reasons - Apr-11-2018).
 
 # Synopsis
 
@@ -24,7 +24,7 @@ Where the options are:
  -hex       - print pixel value as Hex on stdout
  -rgb       - print pixel value as RGB on stderr
  -W         - print the Window id at mouse click
- -w id      - window id in hex, use before -l
+ -w id      - window id in hex, use with -l +x+y
  -l +x+y    - pixel co-ordinate. requires window id
  -d         - show debug messages
  -a         - Print all 16 bits of color. Default is high order 8 bits
