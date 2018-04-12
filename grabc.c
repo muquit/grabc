@@ -235,8 +235,6 @@ static Window select_window(Display *display,int *x,int *y)
     root_window=XRootWindow(display,XDefaultScreen(display));
     log_debug("Root window: 0x%08lx",root_window);
 
-//    if (!g_loc_specified)
-//    {
         status=XGrabPointer(display,root_window,False,
             (unsigned int) ButtonPressMask,GrabModeSync,
             GrabModeAsync,root_window,target_cursor,CurrentTime);
@@ -277,13 +275,6 @@ static Window select_window(Display *display,int *x,int *y)
         XFreeCursor(display,cross_cursor);
         (*x)=event.xbutton.x;
         (*y)=event.xbutton.y;
-//    }
-//    else
-//    {
-//        (*x) = g_x;
-//        (*y) = g_y;
-//    }
-
 
     log_debug("x,y: +%d+%d",(*x),(*y));
     return (target_window);
