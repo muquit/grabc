@@ -56,7 +56,7 @@
 #define VERSION_S "1.0.2"
 
 static int g_debug = False;
-static int g_print_in_hex = False;
+static int g_print_in_hex = True;
 static int g_print_in_rgb = False;
 static int g_print_all_16_bits = False;
 static Window g_window_id = (Window) NULL;
@@ -329,8 +329,6 @@ static Window findSubWindow(Display *display,Window top_window,
     (*x)=newx;
     (*y)=newy;
 
-    log_debug("Window id: %lx",window);
-
     return (window);
 }
 
@@ -361,7 +359,6 @@ static Window get_window_color(Display *display,XColor *color)
         status;
 
     root_window=XRootWindow(display,XDefaultScreen(display));
-    log_debug("Root window: 0x%08lx",root_window);
     target_window=select_window(display,&x,&y);
 
     log_debug("Selected Window id: %lx",target_window);
@@ -490,12 +487,21 @@ int main(int argc,char **argv)
             {
                 if (strncmp("hex",option+1,3) == 0)
                 {
-
+                    g_print_in_hex = True;
                 }
                 else
                 {
                     show_usage();
                     return(1);
+                }
+                break;
+            }
+
+            case 'r':
+            {
+                if (strncmp("rgb",option+1,3) == 0)
+                {
+                    g_print_in_rgb = True;
                 }
                 break;
             }
@@ -617,6 +623,14 @@ int main(int argc,char **argv)
                 (unsigned int) color.green,
                 (unsigned int) color.blue);
             (void) fflush(stdout);
+            if (g_print_in_rgb)
+            {
+                (void) fprintf(stderr,"%d,%d,%d\n",
+                    (unsigned int)color.red,
+                    (unsigned int) color.green,
+                    (unsigned int) color.blue);
+            }
+
         }
         else
         {
@@ -625,11 +639,14 @@ int main(int argc,char **argv)
             b=(color.blue >> 8);
             (void) fprintf (stdout,"#%02x%02x%02x\n",r,g,b);
             (void) fflush(stdout);
+            /*
+            ** write the values in decimal on stderr
+            */
+            if (g_print_in_rgb)
+            {
+                (void) fprintf(stderr,"%d,%d,%d\n",r,g,b);
+            }
         }
-        /*
-        ** write the values in decimal on stderr
-        */
-        (void) fprintf(stderr,"%d,%d,%d\n",r,g,b);
     }
     else
     {
