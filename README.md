@@ -8,7 +8,7 @@ A command line tool for X Window System to identify the color string in hex by c
   This program can be useful when you see a color and want to use the
   color in xterm or your window manager's border but no clue what the
   name of the color is. It's silly to use a image processing software
-  to find it out. (That's how I described it 20 years ago, so keeping it this way for historical reasons).
+  to find it out. (That's how I described it 20 years ago, so keeping it this way for historical reasons - Apr-11-2018).
 
 # Synopsis
 
