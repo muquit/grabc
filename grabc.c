@@ -547,12 +547,6 @@ int main(int argc,char **argv)
                     (void) fprintf(stderr,"Example: -l +10+20\n");
                     return(1);
                 }
-                if (g_window_id == (Window) NULL)
-                {
-                    (void) fprintf(stderr,"ERROR: Please specify window id with -w in hex to use this option\n");
-                    (void) fprintf(stderr,"Use -W option to find the Window Id\n");
-                    return(1);
-                }
                 g_loc_specified = True;
 
                 break;
@@ -585,6 +579,13 @@ int main(int argc,char **argv)
             debug = True;
         }
         */
+    }
+
+    if (g_loc_specified && (g_window_id == (Window) NULL))
+    {
+        (void) fprintf(stderr,"ERROR: Please specify window id with -w in hex to use this option\n");
+        (void) fprintf(stderr,"Use -W option to find the Window Id\n");
+        return(1);
     }
 
     display=XOpenDisplay((char *) NULL);
