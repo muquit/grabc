@@ -564,21 +564,6 @@ int main(int argc,char **argv)
                 break;
             }
         }
-
-        /*
-        if (strncmp(argv[i],"-h",2) == 0 ||
-            strncmp(argv[i],"-v",2) == 0)
-        {
-            (void) fprintf (stderr,"grabc %s by muquit@muquit.com\n",
-                    VERSION_S);
-            (void) fprintf(stderr,"https://www.muquit.com/\n");
-            exit(1);
-        }
-        if (strncmp(argv[i],"-d",2) == 0)
-        {
-            debug = True;
-        }
-        */
     }
 
     if (g_loc_specified && (g_window_id == (Window) NULL))
