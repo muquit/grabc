@@ -27,5 +27,12 @@ all: $(PROGNAME)
 $(PROGNAME) : $(OBJS)
 	$(CC) $(CFLAGS) -o $(PROGNAME) $(OBJS) $(LIBS)
 
+doc:
+	pod2man grabc.pod > grabc.1
+
+install:
+	sudo cp grabc /usr/local/bin
+	sudo cp grabc.1 /usr/local/share/man/man1/
+
 clean:
 	rm -f $(OBJS) $(PROGNAME) core

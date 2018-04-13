@@ -35,6 +35,7 @@
 #include <math.h>
 #include <signal.h>
 #include <time.h>
+#include <errno.h>
 
 #include <X11/Xos.h>
 #include <X11/Xlib.h>
@@ -128,7 +129,7 @@ static void log_debug(const char *fmt,...)
         return;
     }
     va_start(args, fmt);
-    (void) fprintf(stderr,"(debug): ");
+    (void) fprintf(stderr,"[Debug]: ");
     vfprintf(stderr,fmt,args);
     (void) fprintf(stderr,"\n");
     va_end(args);
@@ -207,8 +208,6 @@ static Window select_window(Display *display,int *x,int *y)
     Cursor
         target_cursor;
 
-    static Cursor
-        cross_cursor=(Cursor) NULL;
     int
         status;
 
@@ -233,7 +232,7 @@ static Window select_window(Display *display,int *x,int *y)
     target_window=(Window) NULL;
     target_cursor = get_cross_cursor(display);
     root_window=XRootWindow(display,XDefaultScreen(display));
-    log_debug("Root window: 0x%08lx",root_window);
+//    log_debug("Root Window ID: 0x%08lx",root_window);
 
         status=XGrabPointer(display,root_window,False,
             (unsigned int) ButtonPressMask,GrabModeSync,
@@ -257,7 +256,6 @@ static Window select_window(Display *display,int *x,int *y)
                         "ERROR: Failed to get target window, getting root window!\n");
                     target_window=root_window;
                 }
-                log_debug("Target Window id: 0x%lx", target_window);
                 if (!g_loc_specified)
                 {
                     XUngrabPointer(display,CurrentTime);
@@ -272,11 +270,9 @@ static Window select_window(Display *display,int *x,int *y)
         }
 
         /* free things we do not need, always a good practice */
-        XFreeCursor(display,cross_cursor);
         (*x)=event.xbutton.x;
         (*y)=event.xbutton.y;
 
-    log_debug("x,y: +%d+%d",(*x),(*y));
     return (target_window);
 }
 
@@ -352,18 +348,18 @@ static Window get_window_color(Display *display,XColor *color)
     root_window=XRootWindow(display,XDefaultScreen(display));
     target_window=select_window(display,&x,&y);
 
-    log_debug("Selected Window id: 0x%lx",target_window);
+    log_debug("  Root Window Id: 0x%08lx",root_window);
+    log_debug("Target Window Id: 0x%08lx  X,Y: +%d+%d",target_window,x,y);
     
     if (target_window == (Window) NULL)
         return (Window) NULL;
 
-    log_debug("Getting Ximage x,y:%d,%d",x,y);
     ximage=XGetImage(display,target_window,x,y,1,1,AllPlanes,ZPixmap);
     if (ximage == (XImage *) NULL)
     {
         /* Try root window */
-        log_debug("Could not get XImage from window: 0x%lx",target_window);
-        log_debug("Trying to get XImage from root window: 0x%lx",root_window);
+        log_debug("Could not get XImage from Window: 0x%08lx",target_window);
+        log_debug("Trying to get XImage from root window: 0x%08lx",root_window);
         ximage=XGetImage(display,root_window,x,y,1,1,AllPlanes,ZPixmap);
         if (ximage == (XImage *) NULL)
         {
@@ -509,7 +505,6 @@ int main(int argc,char **argv)
                     }
                 }
                 g_window_id = (Window) strtol(argv[i],NULL, 16);
- 
                 break;
             }
             case 'W':
@@ -523,6 +518,7 @@ int main(int argc,char **argv)
                 Window window = select_window(display, &x, &y);
                 if (window != (Window) NULL)
                 {
+                    log_debug("Window ID: 0x%08lx",window);
                     (void) fprintf(stdout,"0x%lx\n",window);
                 }
                 return(1);
@@ -614,6 +610,7 @@ int main(int argc,char **argv)
             r=(color.red >> 8);
             g=(color.green >> 8);
             b=(color.blue >> 8);
+            log_debug("Color: #%02x%02x%02x",r,g,b);
             (void) fprintf (stdout,"#%02x%02x%02x\n",r,g,b);
             (void) fflush(stdout);
             /*
