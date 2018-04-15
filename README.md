@@ -57,7 +57,7 @@ Older version of this program is available on Ubuntu. However, if you need to ge
 # Know Issues
 
 * If color grabbed from root window, it might always show #000000 (Depending
-on the Window Manager in user)
+on the Window Manager in use)
 
 
 # ChangeLog
