@@ -8,6 +8,12 @@ PROGNAME= grabc
 LIBS= -L/usr/X11R6/lib -lX11
 
 INCLUDES=  -I.
+cp=/bin/cp -fv
+DESTDIR = 
+binary=./grabc
+manpage=./grabc.1
+bindir=/usr/local/bin
+mandir=/usr/local/share/man/man1
 
 # replace -O with -g in order to debug
 
@@ -30,9 +36,23 @@ $(PROGNAME) : $(OBJS)
 doc:
 	pod2man grabc.pod > grabc.1
 
-install:
-	sudo cp grabc /usr/local/bin
-	sudo cp grabc.1 /usr/local/share/man/man1/
+install: installdirs install-bin install-man
 
+install-bin:
+	${cp} ${binary} ${DESTDIR}${bindir}
+
+installdirs:
+	$(SHELL) ./mkinstalldirs ${DESTDIR}${bindir}
+	$(SHELL) ./mkinstalldirs ${DESTDIR}${mandir}
+
+install-man:
+	${cp} ${manpage} ${DESTDIR}${mandir}
+
+deb:
+	/bin/rm -f *.deb
+	/bin/rm -rf /tmp/grabc
+	make DESTDIR=/tmp/grabc install
+	fpm -s dir -t deb -C /tmp/grabc --name grabc --version 1.0.2 --iteration 1 --description "A program to id entify a pixel color on an X Window"
+	/bin/rm -rf /tmp/grabc
 clean:
-	rm -f $(OBJS) $(PROGNAME) core
+	rm -f $(OBJS) $(PROGNAME) core *.deb

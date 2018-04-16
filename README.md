@@ -47,12 +47,31 @@ Older version of this program is available on Ubuntu. However, if you need to ge
 ```
     sudo apt-get -y install libx11-dev
 ```
-
-
 * To compile, at the shell prompt, type:
 ```
     make
 ```    
+
+* To install, at the shell prompt, type:
+```
+    sudo make install
+    make DESTDIR=/tmp/grabc install
+```
+
+* If you want to create a debian package, install fpm first, then type:
+```
+    make deb
+```
+
+* Install the debian package:
+```
+    sudo dpkg -i ./grabc_1.0.2-1_amd64.deb
+```
+
+* To uninstall the debian package:
+```
+    sudo kpkg -r grabc
+```
 
 # Know Issues
 

@@ -40,6 +40,10 @@ When this program is run, the mouse pointer is grabbed and changed to a
 cross hair and when the mouse is clicked, the color of the clicked pixel 
 is written to stdout in hex prefixed with #. 
 
+=head1 LICENSE
+
+MIT
+
 =head1 AUTHOR
 
 grabc is written by Muhammad Muquit E<lt>muquit@muquit.comE<gt>.
