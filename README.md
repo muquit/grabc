@@ -58,7 +58,7 @@ Older version of this program is available on Ubuntu. However, if you need to ge
     make DESTDIR=/tmp/grabc install
 ```
 
-* If you want to create a debian package, install fpm first, then type:
+* If you want to create a debian package, install [fpm](https://github.com/jordansissel/fpm) first, then type:
 ```
     make deb
 ```
@@ -70,7 +70,7 @@ Older version of this program is available on Ubuntu. However, if you need to ge
 
 * To uninstall the debian package:
 ```
-    sudo kpkg -r grabc
+    sudo dpkg -r grabc
 ```
 
 # Know Issues
