@@ -55,6 +55,12 @@ Older version of this program is available on Ubuntu. However, if you need to ge
 * To install, at the shell prompt, type:
 ```
     sudo make install
+```
+The binary *grabc* will be install in /usr/local/bin/ and the man page *grabc.1*
+will be installed in /usr/local/share/man/man1/
+
+If you want to install it in some other directory:
+```
     make DESTDIR=/tmp/grabc install
 ```
 
