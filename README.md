@@ -1,3 +1,4 @@
+[![Downloads](https://img.shields.io/github/downloads/muquit/grabc/total.svg)](https://github.com/muquit/grabc/releases)
 # grabc
 A command line tool to identify a pixel color on an X Window.
 
