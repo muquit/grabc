@@ -54,5 +54,11 @@ deb:
 	make DESTDIR=/tmp/grabc install
 	fpm -s dir -t deb -C /tmp/grabc --name grabc --version 1.0.2 --iteration 1 --description "A program to id entify a pixel color on an X Window"
 	/bin/rm -rf /tmp/grabc
+uninstall:
+	rm -f ${DESTDIR}${bindir}/grabc
+	rm -f ${DESTDIR}${mandir}/grabc.1
+
 clean:
 	rm -f $(OBJS) $(PROGNAME) core *.deb
+
+.PHONY: all doc install install-bin installdirs install-man deb uninstall clean
